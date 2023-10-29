@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ko-web-lb
+  name: ko-web-lb
+spec:
+  ports:
+  - name: 8888-80
+    port: 8888
+    protocol: TCP
+    targetPort: 80
+  selector: #pod finer using label of pods
+    app: ko-deploy1
+  type: ClusterIP
+status:
+  loadBalancer: {}

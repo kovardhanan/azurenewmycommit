@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ko-db
+  name: ko-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ko-db
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ko-db
+    spec:
+      containers:
+      - image: mongo
+        name: mongo
+        resources: {}
+status: {}

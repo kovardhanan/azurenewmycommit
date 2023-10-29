@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: kopod1 #name of my pod
+spec: #all teh element which in my pod
+  containers: #here we write info about out container
+   - name:  kovardhan2
+     image: alpine
+     command: ['sleep', '1200'] #to modifying existing cmd/ENTRY
+   - name : kovardhan1
+     image: kovardhanan2000/kovardhanweb:version1
+       #image from the docker image
+     ports:  #optional part
+     - containerPort: 80

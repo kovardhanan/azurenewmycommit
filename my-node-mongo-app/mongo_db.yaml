@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ko-mongo
+  name: ko-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ko-mongo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ko-mongo
+    spec:
+      containers:
+      - image: mongo
+        name: mongo
+        ports:
+        - containerPort: 27017
+        env:   #to create /pass env varible info
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: ko-db-cred
+              key: my-user
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ko-db-cred
+              key:  my-password
+          
+        resources: {}
+status: {}

@@ -1,0 +1,18 @@
+replicaCount: 3
+service:
+    type: ClusterIP
+
+    containers:
+      - image: mongo
+        name: mongo
+        ports:
+        - containerPort: 3306
+        env:   #to create /pass env varible info
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: ko
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ko2

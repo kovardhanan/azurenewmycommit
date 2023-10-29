@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ko-mongo-db
+  name: ko-mongo-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ko-mongo-db
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ko-mongo-db
+    spec:
+      volumes:
+      - name: ko-pv
+        persistentVolumeClaim:
+        claimName: ko-pvc
+      - image: mongo
+        name: mongo
+        ports:
+         - containerPort: 27017
+        resources: {}
+        volumeMounts:
+        - name: ko-vol
+          mountPath: /data/db/
+        envFrom:
+        - secretKeyRef:
+            name: ko-db-cred
+
+        
+status: {}

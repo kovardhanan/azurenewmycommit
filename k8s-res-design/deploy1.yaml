@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ko-deploy1
+  name: ko-deploy1  #name of the deployment
+spec:
+  replicas: 1     #number of pod
+  selector:
+    matchLabels:
+      app: ko-deploy1
+  strategy: {}
+  template: #to create pod use template 
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ko-deploy1
+    spec:   #app spec section
+      containers:
+      - image: kovardhanan2000/kovardhanweb:version1
+        name: kovardhanweb
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

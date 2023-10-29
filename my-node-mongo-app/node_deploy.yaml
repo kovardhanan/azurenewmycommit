@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ko-node
+  name: ko-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ko-node
+  strategy: {}
+  template:      #craete pod 
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ko-node
+    spec:
+      imagePullSecrets:
+      - name: ko-reg-cred
+      containers:
+      - image: extoaksashu.azurecr.io/node-app:v1
+        name: node-app
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: 50M   #min RAM to start pod
+            cpu: 20m  #milicore cpu
+          limits: 
+            memory: 300M
+            cpu: 100m
+status: {}
